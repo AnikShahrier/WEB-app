@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UWdkwCnzIfL8zikhhlFr10wzErb1OlrAYXzAWzo50FKg0ZX39eHh6AmfAvVlfbqlDOoiVmZN+WO5IbCteakXMA==",
+  "dgSpecHash": "KLA4/5mHRQMHsWyRE/BULFc3oU9C2//EPG6hsLQrOVQ6P3A0CtYRjNeHVXke+sFaYV0dfqyADZXo9JY+uXGXfA==",
   "success": true,
-  "projectFilePath": "D:\\Oishik\\Projects\\Web API\\WEB-app\\SuperHero-API\\SuperHEro-API\\SuperHero-API.csproj",
+  "projectFilePath": "D:\\Oishik\\Projects\\Web API\\WEB-app\\SuperHero-API\\SuperHero-API\\SuperHero-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aniks\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\aniks\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

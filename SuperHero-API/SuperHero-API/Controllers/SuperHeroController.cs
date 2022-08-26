@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SuperHero_API.Data;
 
 namespace SuperHero_API.Controllers
 {
@@ -7,22 +9,62 @@ namespace SuperHero_API.Controllers
     [ApiController]
     public class SuperHeroController : ControllerBase
     {
+        private readonly Datacontext _context;
+
+        public SuperHeroController(Datacontext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<SuperHero>>> GetSuperHeroes ()
         {
 
 
-            return new List<SuperHero>
-            {
-                new SuperHero
-                {
-                    Name = "Iron Man",
-                    FirstName = "Tony",
-                    LastName = "Stark",
-                    Place = "USA"
-                
-                } 
-            };
+            return Ok(await _context.SuperHeroes.ToListAsync());
+        }
+
+        [HttpPost]
+
+        public async Task<ActionResult<List<SuperHero>>> CreateSuperHero(SuperHero hero)
+        {
+            _context.SuperHeroes.Add(hero);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.SuperHeroes.ToListAsync());
+        }
+
+        [HttpPut]
+
+        public async Task<ActionResult<List<SuperHero>>> UpdateSuperHero (SuperHero hero)
+        {
+            var dbHero = await _context.SuperHeroes.FindAsync(hero.Id);
+            if (dbHero == null)
+                return BadRequest("Hero is not created");
+
+            dbHero.Name = hero.Name;
+            dbHero.FirstName=hero.FirstName;
+            dbHero.LastName = hero.LastName;
+            dbHero.Place = hero.Place;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.SuperHeroes.ToListAsync());
+         
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<SuperHero>>> DeleteSuperHero(int id)
+        {
+
+            var dbHero = await _context.SuperHeroes.FindAsync(id);
+            if (dbHero == null)
+                return BadRequest("Hero is not created");
+
+            _context.SuperHeroes.Remove(dbHero);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.SuperHeroes.ToListAsync());
+
         }
     }
 }
